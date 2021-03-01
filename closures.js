@@ -124,8 +124,8 @@ function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
-function message() {
-  return `${welcomeText} ${firstname} ${lastname}`
+  function message() {
+  return `${welcomeText} ${firstname} ${lastname}.`
 }
 
   //Uncommment this to return the value of your message function
@@ -158,6 +158,11 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+    publicMethod: function(){
+      return privateMethod()
+    }
+      
+    
   };
 })();
 
@@ -177,8 +182,15 @@ function secretNumber() {
 
   return {
     // Code here
+    addToSecret: function(num) {
+      return secret += num
+    },
+    takeAwayFromSecret: function(num){
+      return secret -= num;
+    }
+    }
   };
-}
+
 
 
 
@@ -202,9 +214,12 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
+    function closure(count) {
+      setTimeout(function() {
+        console.log(count);
+      }, count * 1000);
+    }
+    closure(i);
   }
 }
 timeOutCounter();
